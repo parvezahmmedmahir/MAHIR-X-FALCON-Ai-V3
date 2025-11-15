@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MAHIR X FALCON Ai - Binary Trading Analysis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <div class="logo-icon"><i class="fas fa-robot"></i></div>
+        <div class="logo-text">MAHIR X FALCON Ai</div>
+        <div class="live-indicator">LIVE</div>
+      </div>
+      <div class="tagline">ULTRA-POWERFUL BINARY 1-MINUTE ANALYSIS</div>
+      <div class="version">v3.0 | NEXT CANDLE PREDICTION</div>
+    </div>
+
+    <div class="dashboard">
+      <div class="metric-card">
+        <div class="metric-label">BINARY ACCURACY</div>
+        <div class="metric-value">94.8%</div>
+        <div class="metric-change positive">+4.2% this week</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">WIN RATE</div>
+        <div class="metric-value">87.3%</div>
+        <div class="metric-change positive">+5.1% this week</div>
+      </div>
+    </div>
+
+    <div class="signal-section">
+      <div class="signal-header">
+        <div class="signal-title">
+          <i class="fas fa-bolt"></i> NEXT CANDLE SIGNAL
+        </div>
+        <div class="signal-timer" id="signalTimer">00:45</div>
+      </div>
+      <div class="signal-body">
+        <div class="signal-direction">
+          <div class="signal-indicator">
+            <div class="signal-icon buy" id="signalIcon">
+              <i class="fas fa-arrow-up"></i>
+            </div>
+            <div class="signal-text buy" id="signalText">CALL</div>
+          </div>
+          <div class="signal-confidence">
+            <div class="confidence-value" id="confidenceValue">91%</div>
+            <div class="confidence-label">CONFIDENCE</div>
+          </div>
+        </div>
+        
+        <div class="signal-details">
+          <div class="signal-detail">
+            <div class="detail-value" id="timeframeValue">1 MIN</div>
+            <div class="detail-label">TIMEFRAME</div>
+          </div>
+          <div class="signal-detail">
+            <div class="detail-value" id="expiryValue">1 MIN</div>
+            <div class="detail-label">EXPIRY</div>
+          </div>
+          <div class="signal-detail">
+            <div class="detail-value" id="riskValue">MEDIUM</div>
+            <div class="detail-label">RISK LEVEL</div>
+          </div>
+          <div class="signal-detail">
+            <div class="detail-value" id="pairValue">EUR/USD</div>
+            <div class="detail-label">PAIR</div>
+          </div>
+        </div>
+        
+        <div class="signal-breakdown">
+          <div class="breakdown-title">
+            <i class="fas fa-chart-bar"></i> ANALYSIS BREAKDOWN
+          </div>
+          
+          <div class="breakdown-item">
+            <div class="breakdown-label"><i class="fas fa-wave-square"></i> TECHNICAL INDICATORS</div>
+            <div class="breakdown-value" id="technicalValue">89%</div>
+          </div>
+          <div class="breakdown-bar">
+            <div class="breakdown-fill technical" id="technicalBar"></div>
+          </div>
+          
+          <div class="breakdown-item">
+            <div class="breakdown-label"><i class="fas fa-tachometer-alt"></i> MOMENTUM ANALYSIS</div>
+            <div class="breakdown-value" id="momentumValue">93%</div>
+          </div>
+          <div class="breakdown-bar">
+            <div class="breakdown-fill momentum" id="momentumBar"></div>
+          </div>
+          
+          <div class="breakdown-item">
+            <div class="breakdown-label"><i class="fas fa-chart-area"></i> VOLUME ANALYSIS</div>
+            <div class="breakdown-value" id="volumeValue">87%</div>
+          </div>
+          <div class="breakdown-bar">
+            <div class="breakdown-fill volume" id="volumeBar"></div>
+          </div>
+          
+          <div class="breakdown-item">
+            <div class="breakdown-label"><i class="fas fa-shapes"></i> PATTERN RECOGNITION</div>
+            <div class="breakdown-value" id="patternRecValue">91%</div>
+          </div>
+          <div class="breakdown-bar">
+            <div class="breakdown-fill pattern" id="patternBar"></div>
+          </div>
+        </div>
+        
+        <div class="recommendation">
+          <strong>NEXT CANDLE PREDICTION:</strong> <span id="recommendationText">Strong CALL signal detected. Enter CALL position with 85-90% payout. Next candle expected to close in the money.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="upload-section">
+      <div class="section-title">
+        <i class="fas fa-chart-line"></i> UPLOAD 1-MINUTE CHART
+      </div>
+      <div class="upload-options">
+        <div class="upload-option" onclick="document.getElementById('fileInput').click()">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <div class="option-title">Upload Chart</div>
+          <div class="option-desc">Select 1-minute binary chart for analysis</div>
+          <input type="file" id="fileInput" class="file-input" accept="image/*">
+        </div>
+        <div class="upload-option" id="pasteBox">
+          <i class="fas fa-paste"></i>
+          <div class="option-title">Paste Screenshot</div>
+          <div class="option-desc">Ctrl+V or drag & drop 1-minute chart</div>
+        </div>
+      </div>
+      
+      <div class="chart-preview" id="chartPreview">
+        <div class="chart-placeholder">
+          <i class="fas fa-chart-candlestick"></i>
+          1-minute binary chart preview
+        </div>
+      </div>
+      
+      <div class="progress-bar">
+        <div class="progress-fill" id="analysisProgress"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>MAHIR X FALCON Ai BINARY TRADING SYSTEM</div>
+      <div class="contact">
+        <a href="https://t.me/LUX_DOT" target="_blank"><i class="fab fa-telegram"></i> @LUX_DOT</a>
+        <div class="owner">DEVELOPED BY MAHIR</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notification" id="notification">
+    <i class="fas fa-check-circle"></i>
+    <span id="notificationText">1-minute chart analysis complete</span>
+  </div>
+
+  <script>
+    // Enhanced signals with binary focus
+    let signals = [
+      { 
+        type: "CALL", 
+        confidence: 91, 
+        pair: "EUR/USD",
+        risk: "MEDIUM",
+        technical: 89,
+        momentum: 93,
+        volume: 87,
+        patternRec: 91
+      },
+      { 
+        type: "PUT", 
+        confidence: 88, 
+        pair: "GBP/USD",
+        risk: "HIGH",
+        technical: 85,
+        momentum: 90,
+        volume: 82,
+        patternRec: 86
+      },
+      { 
+        type: "CALL", 
+        confidence: 94, 
+        pair: "USD/JPY",
+        risk: "LOW",
+        technical: 92,
+        momentum: 95,
+        volume: 90,
+        patternRec: 93
+      },
+      { 
+        type: "PUT", 
+        confidence: 87, 
+        pair: "AUD/USD",
+        risk: "MEDIUM",
+        technical: 84,
+        momentum: 88,
+        volume: 83,
+        patternRec: 85
+      },
+      { 
+        type: "CALL", 
+        confidence: 92, 
+        pair: "USD/CAD",
+        risk: "LOW",
+        technical: 90,
+        momentum: 93,
+        volume: 88,
+        patternRec: 91
+      },
+      { 
+        type: "PUT", 
+        confidence: 89, 
+        pair: "EUR/GBP",
+        risk: "MEDIUM",
+        technical: 86,
+        momentum: 91,
+        volume: 85,
+        patternRec: 87
+      },
+      { 
+        type: "CALL", 
+        confidence: 93, 
+        pair: "XAU/USD",
+        risk: "HIGH",
+        technical: 91,
+        momentum: 94,
+        volume: 89,
+        patternRec: 92
+      }
+    ];
+    
+    let index = 0;
+    let currentImage = null;
+    let timerInterval;
+    let countdown = 60;
+
+    // Initialize the app
+    document.addEventListener('DOMContentLoaded', function() {
+      // Start the signal timer
+      startTimer();
+      
+      // Add event listener for file input
+      document.getElementById('fileInput').addEventListener('change', handleUpload);
+      
+      // Add event listener for paste
+      document.addEventListener('paste', handlePaste);
+      
+      // Add event listener for drag and drop
+      document.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        document.getElementById('pasteBox').style.borderColor = 'var(--accent)';
+        document.getElementById('pasteBox').style.backgroundColor = 'rgba(0, 247, 255, 0.1)';
+      });
+      
+      document.addEventListener('dragleave', function() {
+        document.getElementById('pasteBox').style.borderColor = 'var(--border)';
+        document.getElementById('pasteBox').style.backgroundColor = 'rgba(26, 36, 63, 0.5)';
+      });
+      
+      document.addEventListener('drop', function(e) {
+        e.preventDefault();
+        document.getElementById('pasteBox').style.borderColor = 'var(--border)';
+        document.getElementById('pasteBox').style.backgroundColor = 'rgba(26, 36, 63, 0.5)';
+        
+        const files = e.dataTransfer.files;
+        if (files.length > 0 && files[0].type.startsWith('image/')) {
+          processFile(files[0]);
+        }
+      });
+      
+      // Generate initial signal
+      generateSignal();
+    });
+
+    function startTimer() {
+      // Clear any existing timer
+      if (timerInterval) clearInterval(timerInterval);
+      
+      // Reset countdown
+      countdown = 60;
+      
+      // Update timer immediately
+      updateTimer();
+      
+      // Start countdown
+      timerInterval = setInterval(function() {
+        countdown--;
+        updateTimer();
+        
+        // When timer reaches 0, generate new signal
+        if (countdown <= 0) {
+          generateSignal();
+          countdown = 60;
+        }
+      }, 1000);
+    }
+    
+    function updateTimer() {
+      const timerElement = document.getElementById('signalTimer');
+      const seconds = countdown % 60;
+      timerElement.textContent = `00:${seconds < 10 ? '0' : ''}${seconds}`;
+      
+      // Add pulse animation when time is running out
+      if (countdown <= 10) {
+        timerElement.style.animation = 'pulse 1s infinite';
+        timerElement.style.color = 'var(--sell)';
+      } else {
+        timerElement.style.animation = '';
+        timerElement.style.color = 'var(--accent)';
+      }
+    }
+
+    function generateSignal() {
+      const signal = signals[index % signals.length];
+      
+      // Update signal display
+      const signalIcon = document.getElementById('signalIcon');
+      const signalText = document.getElementById('signalText');
+      const confidenceValue = document.getElementById('confidenceValue');
+      
+      if (signal.type === "CALL") {
+        signalIcon.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        signalIcon.className = "signal-icon buy";
+        signalText.textContent = "CALL";
+        signalText.className = "signal-text buy";
+      } else {
+        signalIcon.innerHTML = '<i class="fas fa-arrow-down"></i>';
+        signalIcon.className = "signal-icon sell";
+        signalText.textContent = "PUT";
+        signalText.className = "signal-text sell";
+      }
+      
+      confidenceValue.textContent = `${signal.confidence}%`;
+      
+      // Update signal details
+      document.getElementById('pairValue').textContent = signal.pair;
+      document.getElementById('riskValue').textContent = signal.risk;
+      
+      // Update analysis breakdown
+      document.getElementById('technicalValue').textContent = `${signal.technical}%`;
+      document.getElementById('momentumValue').textContent = `${signal.momentum}%`;
+      document.getElementById('volumeValue').textContent = `${signal.volume}%`;
+      document.getElementById('patternRecValue').textContent = `${signal.patternRec}%`;
+      
+      // Update recommendation
+      const recommendationText = document.getElementById('recommendationText');
+      if (signal.type === "CALL") {
+        recommendationText.textContent = `Strong CALL signal detected for ${signal.pair}. Enter CALL position with 85-90% payout. Next candle expected to close in the money.`;
+      } else {
+        recommendationText.textContent = `Strong PUT signal detected for ${signal.pair}. Enter PUT position with 85-90% payout. Next candle expected to close in the money.`;
+      }
+      
+      // Animate the breakdown bars
+      setTimeout(() => {
+        document.getElementById('technicalBar').style.width = `${signal.technical}%`;
+        document.getElementById('momentumBar').style.width = `${signal.momentum}%`;
+        document.getElementById('volumeBar').style.width = `${signal.volume}%`;
+        document.getElementById('patternBar').style.width = `${signal.patternRec}%`;
+      }, 300);
+      
+      // Increment index for next signal
+      index++;
+      
+      // Show notification
+      showNotification(`New ${signal.type} signal generated for ${signal.pair}`);
+    }
+
+    function handleUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        processFile(file);
+      }
+    }
+
+    function handlePaste(event) {
+      const items = event.clipboardData.items;
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf('image') !== -1) {
+          const file = items[i].getAsFile();
+          processFile(file);
+          break;
+        }
+      }
+    }
+
+    function processFile(file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        currentImage = e.target.result;
+        displayImage(currentImage);
+        showNotification('1-minute binary chart loaded successfully');
+        analyzeChart();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function displayImage(imageData) {
+      const chartPreview = document.getElementById('chartPreview');
+      chartPreview.innerHTML = `<img src="${imageData}" alt="1-Minute Binary Chart">`;
+    }
+
+    function analyzeChart() {
+      const progressBar = document.getElementById('analysisProgress');
+      
+      // Reset progress
+      progressBar.style.width = '0%';
+      
+      // Simulate analysis progress
+      let progress = 0;
+      const progressInterval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(progressInterval);
+          
+          // Analysis complete - generate new signal
+          setTimeout(() => {
+            generateSignal();
+            showNotification('Chart analysis complete - new signal generated');
+          }, 500);
+        }
+        progressBar.style.width = `${progress}%`;
+      }, 200);
+    }
+
+    function showNotification(message) {
+      const notification = document.getElementById('notification');
+      const notificationText = document.getElementById('notificationText');
+      
+      notificationText.textContent = message;
+      notification.classList.add('show');
+      
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 4000);
+    }
+  </script>
+</body>
+</html>
